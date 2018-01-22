@@ -1,8 +1,4 @@
-$(document).ready(function() {
-  setTimeout(function() {
-    window.location.href = 'welcome.html';
-  }, 40000);
-  // Initialize Firebase
+// Initialize Firebase
   var config = {
     apiKey: 'AIzaSyD6hxhZ9lWlGruPqp4Pl0pFaQd__Rka7P8',
     authDomain: 'movie-ups.firebaseapp.com',
@@ -19,14 +15,14 @@ $(document).ready(function() {
     firebase.auth()
       .signInWithPopup(provider) // envía popup de gmail
       .then(function(result) { // luego...
-        console.log(result.user);
+        // console.log(result.user);
         saveDataUser(result.user); // llama a la función
         // local storage a utilizar en las demás vistas
         localStorage.name = result.user.displayName;
         localStorage.uid = result.user.uid;
         localStorage.email = result.user.email;
         localStorage.photo = result.user.photoURL;
-      });
+        $(location).attr('href', 'welcome.html'); // para que pase a la siguiente vista luego de obtener los datos
   });
   // guarda datos de usuarios automáticamente
   function saveDataUser(user) { // función creadora de nodos
