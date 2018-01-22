@@ -15,13 +15,16 @@ $(document).ready(function() {
   $('#photo').attr('src', localStorage.photo);
   $('#name').append(localStorage.name);
   $('#email').append(localStorage.email);
+
+  $('#photo-user').attr('src', localStorage.photo);
+  $('#name-user').append(localStorage.name);
   // Iniciando parallax del gif de portada
   $('.parallax').parallax();
   // Initialize collapse button
   $('.button-collapse').sideNav();
   // Boton de salida
-   // Boton de salida
-   $('#logout').on('click', function() {
+  // Boton de salida
+  $('#logout').on('click', function() {
     firebase.auth().signOut().then(function() {
       window.location.href = 'login.html';
       console.log('saliste');
@@ -90,7 +93,7 @@ $(document).ready(function() {
       $('#movie-img').attr('src', response.Poster);
       $('#td-year').text(response.Year);
       $('#td-time').text(response.Runtime);
-      $('#td-repart').text(response.Actors);
+      // $('#td-repart').text(response.Actors);
       $('#td-genre').text(response.Genre);
       $('#name-movie').text(response.Title);
     });

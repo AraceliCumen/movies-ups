@@ -65,6 +65,11 @@
 textarea{
   overflow:hidden;
 }
-.ranked-container{
-  margin-bottom: 20%;
+
+
+/* Notificaciones */
+
+.ard-notification {
+  z-index: 90000;
+  margin-top: 120px;
 }

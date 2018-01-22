@@ -1,4 +1,4 @@
-{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -179,11 +179,6 @@
 	border-radius: 50% !important;
 }
 
-#name-user {
-    margin-top: 0px !important;
-    margin-bottom: 6px !important;
-}
-
 a {
-    color: white;
+  color: white;
 }

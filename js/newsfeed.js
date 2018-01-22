@@ -91,7 +91,27 @@ $(document).ready(function() {
     // console.log(arrNameMovies);
   };
 
-  $('#btn-reload').on('click', function() {
-    location.reload();
+  function apicallModal(indexElement) {
+    var nameMovie = arrMovies[indexElement];
+    $.getJSON('http://www.omdbapi.com/?t=' + nameMovie + '&apikey=a1792c9b').then(function(response) {
+      $('#movie-img').attr('src', response.Poster);
+      $('#td-year').text(response.Year);
+      $('#td-time').text(response.Runtime);
+      // $('#td-repart').text(response.Actors);
+      $('#td-genre').text(response.Genre);
+      $('#name-movie').text(response.Title);
+    });
+  }
+
+  $('.btn-modal').on('click', function(event) {
+    var element = $(this);
+    var idItem = element.data('movie');
+    console.log(idItem);
+    apicallModal(idItem);
+  });
+
+  $('#btn-ver-episodio').on('click', function(event) {
+    localStorage.nameMovie = $('#name-movie').text();
+    console.log(localStorage.nameMovie);
   });
 });

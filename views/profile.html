@@ -101,52 +101,101 @@
             </div>
             <p class="name" id="name-user"></p>
           </div>
-          <div class="profile-stats">
+          <div class="profile-stats center-align">
             <ul>
-              <li>
-                <span>13</span>
-                <span>Following</span>
+              <li class="col s6">
+                <span class="center-align">13</span>
+                <span class="center-align">Following</span>
               </li>
-              <li>
-                <span id="seguidores"></span>
-                <span>Followers</span>
+              <li class="col s6">
+                <span id="seguidores" class="center-align">61</span>
+                <span class="center-align">Followers</span>
               </li>
             </ul>
-            <a class="follow" id="follow">Follow</a>
           </div>
         </section>
-        <div class="container">
-          <div class="row">
-            <div class="col s12">
-                <div id="publicaciones">
+        <div class="card">
+            <!-- <div class="card-image">
+              <img src="images/sample-1.jpg">
+            </div> -->
+            <div class="card-content">
+              <p>Hi comunidad, estoy feliz de poder compartir los UP's que me ha costado tanto esfuerzo encontrar, horas de horas
+                analizando cada escena al fin tiene su recompensa.</p>
+            </div>
+            <div class="card-action card-tabs">
+              <a href="#">Mis UP's</a>
+            </div>
+          </div>
+          <div class="row container-flex-row">
+            <div class="col s12 container-flex-column center-align">
+              <h4 id="title-nf"> Mis UP'S</h4>
+            </div>
+          </div>
+          <div class="row container-flex-row" id="container-movie-1">
+          </div>
+          
+        </main>
+        <footer>
+          <div class="tab-menu-holder red darken-4">
+            <ul>
+              <li class="tab-item-btn active col s4">
+                <a href="newsfeed.html" class="color-white">
+                  <i class="material-icons">home</i>
+                </a>
+      
+              </li>
+              <li class="tab-item-btn col s4">
+                <a href="search.html" class="color-white">
+                  <i class="material-icons">search</i>
+                </a>
+              </li>
+              <li class="tab-item-btn col s4">
+                <a class="color-white" href="notifications.html" class="color-white">
+                  <i class="material-icons">notifications</i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </footer>
+        <!-- Modal -->
+        <div id="modal-movie" class="modal">
+          <div class="modal-content">
+            <i class="material-icons right modal-close" id="btn-reload">close</i>
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="col s12 container-flex-column">
+                    <img id="movie-img" src="" alt="movies-API-OMDB" class="imgs-gallery responsive-img">
+                    <h6 class=center-align id="name-movie">Nombre Película</h6>
+                    <table class="responsive-table centered highlight">
+                      <thead>
+                        <tr>
+                          <th>Año</th>
+                          <th>Duración</th>
+                          <!-- <th>Reparto</th> -->
+                          <th>Género</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td id="td-year">1998</td>
+                          <td id="td-time">155mm</td>
+                          <!-- <td id="td-repart">nnnn</td> -->
+                          <td id="td-genre">Administración</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="col s12  m12 l12 xl12">
+                    <a class="btn display-block" id="btn-ver-episodio" href="ups.html">Ver Episodio</a>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </main>
-      <!-- fin de profile -->
-  <footer>
-    <div class="tab-menu-holder red darken-4">
-      <ul>
-        <li class="tab-item-btn active col s4">
-          <a href="newsfeed.html" class="color-white">
-            <i class="material-icons">home</i>
-          </a>
-  
-        </li>
-        <li class="tab-item-btn col s4">
-          <a href="search.html" class="color-white">
-            <i class="material-icons">search</i>
-          </a>
-        </li>
-        <li class="tab-item-btn col s4">
-          <a class="color-white" href="notifications.html" class="color-white">
-            <i class="material-icons">notifications</i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </footer>
   <!-- Enlazamos la librería Jquery -->
   <script src="../vendors/jquery/jquery-3.2.1.min.js"></script>
   <!-- Enlazamos el archivo jquery de materialize -->
@@ -154,6 +203,8 @@
   <!-- Enlazamos nuestro archivo JS -->
   <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
   <script src="../js/profile.js"></script>
+  <script src="../js/profileuser.js"></script>>
+  <script src="../vendors/lib-raty/jquery.raty.js"></script>
 </body>
 
 </html>
