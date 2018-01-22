@@ -1,0 +1,6 @@
+data = {
+    Gladiator: {
+        url: ,
+        info: 
+    }
+}

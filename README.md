@@ -40,7 +40,9 @@ Al tener 3 días para realizar muestro proyecto sabíamos que teníamos que ser 
 * Plataforma de desarrollo
     **Firebase**
 * Data
-    **API**
+    **API OMBD**
+* Iframe
+    **Youtube**
 
 ## Prototipado
 
