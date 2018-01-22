@@ -14,7 +14,7 @@ $(document).ready(function() {
   $('#photo').attr('src', localStorage.photo);
   $('#name').append(localStorage.name);
   $('#email').append(localStorage.email);
-
+   
   // Boton de salida
   $('#logout').on('click', function() {
     firebase.auth().signOut().then(function() {
@@ -52,19 +52,13 @@ $(document).ready(function() {
     var content = '<div class="col s4 container-flex-column"><img id="movie' + i + '" src="" alt="movies-API-OMDB" class="materialboxed imgs-gallery responsive-img"><h6 class=center-align id="name-movie' + i + '">Nombre Película</h6><div id="raty' + i + '" class=""></div><a class="waves-effect waves-light btn modal-trigger btn-modal red darken-4" href="#modal-movie" data-movie="' + i + '">Ver Datos</a></div>';
 
     if (i < 3) {
-      containerMovies1.prepend(content);
-      // Para las strellas.
-      $('#raty' + i).raty({ score: 5 });
+      containerMovies1.prepend('<div class="col s4 container-flex-column"><img id="movie' + i + '" src="" alt="movies-API-OMDB" class="materialboxed imgs-gallery responsive-img"><h6 class=center-align id="name-movie' + i + '">Nombre Película</h6><a class="waves-effect waves-light btn red darken-4 modal-trigger" href="#modal-movie">Ver Datos</a></div>');
     }
     if (i >= 3 && i < 6) {
-      containerMovies2.prepend(content);
-      // Para las strellas.
-      $('#raty' + i).raty({ score: 4 });
+      containerMovies2.prepend('<div class="col s4 container-flex-column"><img id="movie' + i + '" src="" alt="movies-API-OMDB" class="materialboxed imgs-gallery responsive-img"><h6 class=center-align id="name-movie' + i + '">Nombre Película</h6><a class="waves-effect waves-light btn red darken-4 modal-trigger" href="#modal-movie">Ver Datos</a></div>');
     }
     if (i >= 6 && i < 9) {
-      containerMovies3.prepend(content);
-      // Para las strellas.
-      $('#raty' + i).raty({ score: 3 });
+      containerMovies3.prepend('<div class="col s4 container-flex-column"><img id="movie' + i + '" src="" alt="movies-API-OMDB" class=" materialboxed imgs-gallery responsive-img"><h6 class=center-align id="name-movie' + i + '">Nombre Película</h6><a class="waves-effect waves-light btn red darken-4 modal-trigger " href="#modal-movie">Ver Datos</a></div>');
     }
 
     apicall(i);
@@ -97,27 +91,7 @@ $(document).ready(function() {
     // console.log(arrNameMovies);
   };
 
-  function apicallModal(indexElement) {
-    var nameMovie = arrMovies[indexElement];
-    $.getJSON('http://www.omdbapi.com/?t=' + nameMovie + '&apikey=a1792c9b').then(function(response) {
-      $('#movie-img').attr('src', response.Poster);
-      $('#td-year').text(response.Year);
-      $('#td-time').text(response.Runtime);
-      $('#td-repart').text(response.Actors);
-      $('#td-genre').text(response.Genre);
-      $('#name-movie').text(response.Title);
-    });
-  }
-
-  $('.btn-modal').on('click', function(event) {
-    var element = $(this);
-    var idItem = element.data('movie');
-    console.log(idItem);
-    apicallModal(idItem);
-  });
-
-  $('#btn-ver-episodio').on('click', function(event) {
-    localStorage.nameMovie = $('#name-movie').text();
-    console.log(localStorage.nameMovie);
+  $('#btn-reload').on('click', function() {
+    location.reload();
   });
 });
