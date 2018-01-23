@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   $('#photo').attr('src', localStorage.photo);
   $('#name').append(localStorage.name);
   $('#email').append(localStorage.email);
@@ -8,8 +8,8 @@ $(document).ready(function() {
   $('#img-user1').attr('src', localStorage.photo);
 
   // Boton de salida
-  $('#logout').on('click', function() {
-    firebase.auth().signOut().then(function() {
+  $('#logout').on('click', function () {
+    firebase.auth().signOut().then(function () {
       window.location.href = 'login.html';
       console.log('saliste');
     });
@@ -63,7 +63,7 @@ $(document).ready(function() {
       'Star Wars': null,
     },
     limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-    onAutocomplete: function(val) {
+    onAutocomplete: function (val) {
       // Callback function when value is autcompleted.
     },
     minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
@@ -76,7 +76,7 @@ $(document).ready(function() {
   var $btnSendAttr = $('button[type=submit]');
 
   // para no dar comentarios vacios
-  $input.on('input', function() {
+  $input.on('input', function () {
     if ($(this).val().length === 0 || $(this).val().length === ' ' || $(this).val().length === '') {
       $btnSendAttr.attr('disabled', true); // desabilita el boton
       // textArea contiene algo
@@ -85,7 +85,7 @@ $(document).ready(function() {
     }
   });
   // aparición de nuevo comentario
-  $btnSend.on('click', function() {
+  $btnSend.on('click', function () {
     var nameUser = localStorage.name;
     var $inputVal = $input.val();
     var $comments = '<div class="col s12 box">' + '<span>_name_<span>' + '<div class="right"><img src="_photo_"  style="width:50px; height: 50px; border-radius: 50% "></div>' + '<div class="div-name"><h4></h4></div>' + '<div class="message-box"><span></span></div>' + '</div>';
@@ -99,13 +99,13 @@ $(document).ready(function() {
     // Conviertiendo el entero a Porcentaje para que me pueda funcionar la barra
     var accountantPor = (countComment * 10 + '%');
     console.log(accountantPor);
-    console.log(typeof(accountantPor));
+    console.log(typeof (accountantPor));
     // Condicionando para que incremente la barra progresiva.
     $('#determinate1').attr('style', 'width:' + accountantPor);
-    
+
 
     // guardar comentarios en firebase
-    firebase.database().ref('comments').push({
+    firebase.database().ref('users').child(localStorage.uid).child('comments').push({
       name: localStorage.name,
       message: $inputVal,
     });
@@ -117,23 +117,19 @@ $(document).ready(function() {
     }
   });
 
-  // para traer todos lo posteos que hizo
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      var token = firebase.auth().currentUser.uid;
-      queryDataset(token);
+  // mostrando los post guardados
+  var firebasePostREsf = firebase.database().ref('users').child(localStorage.uid).child('comments');
+  firebasePostREsf.on('child_added', function (datasnapshot) {
+    console.log(datasnapshot);
+    var postPublicado = datasnapshot.val();
+    // var imagePublicada = datasnapshot.child('url').val();
+    if (postPublicado) {
+      // $('#publicado').prepend('<div class="col s12 box"><span>'+ postPublicado.name +'<span><div class="right"><img src="https://lh3.googleusercontent.com/-69eWQEgQAwM/AAAAAAAAAAI/AAAAAAAAAAs/3u2Ahk-Wj-c/photo.jpg" style="width:50px; height: 50px; border-radius: 50% "></div><div class="div-name"><h4></h4></div><div class="message-box">'+ postPublicado.message +'</div></span></span></div>')
+      $('#publicado').prepend('<div class="posts">' + postPublicado.message + '</div>');
     }
   });
 
-  firebase.database().ref('users').child(localStorage.uid).once('value').then(function(snapshot) {
-    var Postarray = snapshot.val();
-    var keys = Object.keys(Postarray);
-    for (var i = 0; i < keys.length; i++) {
-      var currentObject = Postarray[keys[i]];
-      arrayTraer[i] = currentObject.name;
-      arrayTraerFoto[i] = currentObject.photo;
-    }
-  });
-
-  
 });
+
+
+
